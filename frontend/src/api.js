@@ -1,4 +1,6 @@
-const API_URL = "http://127.0.0.1:8000";
+const API_URL = import.meta.env.DEV
+  ? "http://127.0.0.1:8000"
+  : "/api";
 const REQUEST_TIMEOUT_MS = 20000;
 const AI_REQUEST_TIMEOUT_MS = 300000;
 

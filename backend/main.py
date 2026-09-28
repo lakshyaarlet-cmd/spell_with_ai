@@ -32,6 +32,12 @@ app = FastAPI(
     version="1.0.0",
     lifespan=lifespan,
 )
+@app.middleware("http")
+async def strip_api_prefix(request, call_next):
+    if request.scope["path"].startswith("/api"):
+        request.scope["path"] = request.scope["path"][4:] or "/"
+    return await call_next(request)
+    
 
 
 # =========================================================
